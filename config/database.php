@@ -85,11 +85,14 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => env('DATABASE_URL'),
+            // Prefer DB_URL if provided (some platforms expose this), otherwise use DATABASE_URL.
+            // If using a Neon pooled password with special characters, ensure it is URL-encoded when using a URL.
+            'url' => env('DB_URL', env('DATABASE_URL')),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'laravel'),
             'username' => env('DB_USERNAME', 'root'),
+            // Explicit password still applies even if a URL is set; this helps with Neon pooled passwords.
             'password' => env('DB_PASSWORD', ''),
             'charset' => env('DB_CHARSET', 'utf8'),
             'prefix' => '',

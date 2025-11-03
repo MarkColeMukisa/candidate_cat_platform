@@ -147,6 +147,17 @@ Note: The UI shows tiers T0 – T5 for completeness, but current logic assigns o
 
 ## Environment Notes
 - Configure APP_URL in .env (e.g., http://localhost:8000) so generated URLs are correct.
+
+### Connecting to Neon (PostgreSQL)
+- Preferred: set a single DATABASE_URL env var provided by Neon. Example:
+  - DATABASE_URL="postgresql://neondb_owner:YOUR%21ENCODED%3APASSWORD@ep-your-neon-endpoint.aws.neon.tech:5432/neondb?sslmode=require&pgbouncer=true&connect_timeout=10"
+- Important:
+  - If your password contains special characters like ! : ; = @, you must URL-encode it in the URL. For example, ! becomes %21.
+  - Do not paste values like "endpoint=...;npg_..." into DB_PASSWORD. That string is not a raw password. Use the exact password value Neon shows, or use the full DATABASE_URL from Neon.
+  - On many hosts, setting DATABASE_URL is the easiest way. This app now prefers DB_URL/DATABASE_URL automatically when present.
+  - Keep sslmode=require for Neon.
+- Alternatively, set the split DB_* vars (DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD). Ensure DB_PASSWORD is only the password (no endpoint= prefix).
+
 - For Docker users, consider Laravel Sail (optional):
   - cp .env.example .env; set SAIL_ variables
   - composer require laravel/sail --dev && php artisan sail:install
