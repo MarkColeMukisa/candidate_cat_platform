@@ -33,6 +33,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public static function updateOrCreate(array $array, array $array1)
+    {
+    }
+
     /**
      * Get the attributes that should be cast.
      *
