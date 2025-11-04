@@ -11,7 +11,7 @@ class AdminUserSeeder extends Seeder
     {
         $name = env('ADMIN_NAME', 'Admin User');
         $email = env('ADMIN_EMAIL', 'admin@example.com');
-        $password = env('ADMIN_PASSWORD', 'password');
+        $password = bcrypt(env('ADMIN_PASSWORD', 'password'));
 
         // Idempotent: update if the email exists, otherwise create.
         User::updateOrCreate(
