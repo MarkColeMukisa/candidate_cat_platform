@@ -60,32 +60,34 @@
 </div>
 
 <div class="card">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Tier</th>
-                <th>Registered</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($candidates as $c)
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
                 <tr>
-                    <td><a class="link" href="{{ route('candidates.show', $c) }}">{{ $c->name }}</a></td>
-                    <td>{{ $c->email }}</td>
-                    <td>{{ $c->phone }}</td>
-                    <td><span class="badge">Tier {{ $c->tier }}</span></td>
-                    <td class="muted">{{ $c->created_at->diffForHumans() }}</td>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Tier</th>
+                    <th>Registered</th>
                 </tr>
-            @empty
-                <tr>
-                    <td colspan="5" class="muted">No candidates found.</td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @forelse($candidates as $c)
+                    <tr>
+                        <td><a class="link" href="{{ route('candidates.show', $c) }}">{{ $c->name }}</a></td>
+                        <td>{{ $c->email }}</td>
+                        <td>{{ $c->phone }}</td>
+                        <td><span class="badge">Tier {{ $c->tier }}</span></td>
+                        <td class="muted">{{ $c->created_at->diffForHumans() }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5" class="muted">No candidates found.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 
     <div class="mt-4">
         {{ $candidates->links() }}

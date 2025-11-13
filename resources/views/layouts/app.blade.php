@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ config('app.name', 'Candidate Platform') }}</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         :root { --c:#1f2937; --a:#2563eb; --bg:#f9fafb; --muted:#6b7280; --ok:#16a34a; --bad:#dc2626; }
         body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji'; margin:0; background:var(--bg); color:var(--c);}
@@ -13,15 +14,24 @@
         .btn { background: var(--a); color:#fff; padding:.5rem .9rem; border-radius:.4rem; border:none; cursor:pointer; display:inline-block; }
         .btn.secondary { background:#111827; }
         .card { background:#fff; border:1px solid #e5e7eb; border-radius:.6rem; padding:1rem; }
-        .grid { display:grid; gap:1rem; }
-        .grid.cols-2 { grid-template-columns: 1fr 1fr; }
-        .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+        /* Mobile-first grids */
+        .grid { display:grid; gap:1rem; grid-template-columns: 1fr; }
+        /* sm >= 640px */
+        @media (min-width: 640px) {
+            .grid.cols-2 { grid-template-columns: 1fr 1fr; }
+            .grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+        }
+        /* lg >= 1024px */
+        @media (min-width: 1024px) {
+            .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+        }
         .mb-2 { margin-bottom:.5rem; } .mb-4{margin-bottom:1rem;} .mt-2{margin-top:.5rem;} .mt-4{margin-top:1rem;} .mt-6{margin-top:1.5rem;}
         label { font-weight:600; display:block; margin-bottom:.25rem; }
         input[type=text], input[type=email], select { width:100%; padding:.55rem .65rem; border:1px solid #d1d5db; border-radius:.4rem; }
         .row { display:flex; gap:.5rem; align-items:center; }
         .table { width:100%; border-collapse: collapse; }
-        .table th, .table td { padding:.6rem .5rem; border-bottom:1px solid #e5e7eb; text-align:left; }
+        .table th, .table td { padding:.6rem .5rem; border-bottom:1px solid #e5e7eb; text-align:left; word-break: break-word; }
+        .table-responsive { width:100%; overflow-x:auto; }
         .badge { display:inline-block; padding:.2rem .5rem; border-radius:999px; font-size:.85rem; background:#eef2ff; color:#3730a3; }
         .stats { display:flex; gap:.5rem; flex-wrap: wrap; }
         .stat { background:#fff; border:1px solid #e5e7eb; border-radius:.6rem; padding:.5rem .75rem; }
