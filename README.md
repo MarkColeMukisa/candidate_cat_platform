@@ -152,7 +152,7 @@ Note: The UI shows tiers T0 – T5 for completeness, but current logic assigns o
 - Preferred: set a single DATABASE_URL env var provided by Neon. Example:
   - DATABASE_URL="postgresql://neondb_owner:YOUR%21ENCODED%3APASSWORD@ep-your-neon-endpoint.aws.neon.tech:5432/neondb?sslmode=require&pgbouncer=true&connect_timeout=10"
 - Important:
-  - If your password contains special characters like ! : ; = @, you must URL-encode it in the URL. For example, ! becomes %21.
+  - If your password contains special characters like! : = @, you must URL-encode it in the URL. For example, ! becomes %21.
   - Do not paste values like "endpoint=...;npg_..." into DB_PASSWORD. That string is not a raw password. Use the exact password value Neon shows, or use the full DATABASE_URL from Neon.
   - On many hosts, setting DATABASE_URL is the easiest way. This app now prefers DB_URL/DATABASE_URL automatically when present.
   - Keep sslmode=require for Neon.
