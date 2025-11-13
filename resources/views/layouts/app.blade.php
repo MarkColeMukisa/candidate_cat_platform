@@ -13,6 +13,7 @@
         a { color: var(--a); text-decoration:none; }
         .btn { background: var(--a); color:#fff; padding:.5rem .9rem; border-radius:.4rem; border:none; cursor:pointer; display:inline-block; }
         .btn.secondary { background:#111827; }
+        .btn.login { background:#fdae4b; }
         .card { background:#fff; border:1px solid #e5e7eb; border-radius:.6rem; padding:1rem; }
         /* Mobile-first grids */
         .grid { display:grid; gap:1rem; grid-template-columns: 1fr; }
@@ -50,7 +51,7 @@
                 <a href="{{ route('candidates.index') }}"><strong>{{ config('app.name', 'Candidate Platform') }}</strong></a>
             </div>
             <div class="row">
-                <a class="btn" href="{{ route('candidates.create') }}">Register Candidate</a>
+                <a class="btn login" href="https://ccp-main-ebxqa7.laravel.cloud/admin">Login</a>
             </div>
         </header>
 
