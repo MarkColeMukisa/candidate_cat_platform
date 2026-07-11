@@ -51,7 +51,7 @@
                 <a href="{{ route('candidates.index') }}"><strong>{{ config('app.name', 'Candidate Platform') }}</strong></a>
             </div>
             <div class="row">
-                <a class="btn login" href="https://ccp-main-ebxqa7.laravel.cloud/admin">Login</a>
+                <a class="btn login" href="#">Login</a>
             </div>
         </header>
 
